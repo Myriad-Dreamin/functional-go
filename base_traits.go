@@ -3,6 +3,8 @@ package functional
 import "reflect"
 
 type BaseTraitsInterface interface {
+	GetTypeInfo() reflect.Type
+	GetSliceInfo() reflect.Type
 	ObjectFactory() interface{}
 	SliceFactory() interface{}
 }
@@ -18,6 +20,14 @@ func (traits BaseTraits) ObjectFactory() interface{} {
 
 func (traits BaseTraits) SliceFactory() interface{} {
 	return reflect.MakeSlice(traits.SliceInfo, 0, 0).Interface()
+}
+
+func (traits BaseTraits) GetTypeInfo() reflect.Type {
+	return traits.TypeInfo
+}
+
+func (traits BaseTraits) GetSliceInfo() reflect.Type {
+	return traits.SliceInfo
 }
 
 
