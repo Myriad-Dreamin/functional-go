@@ -1,4 +1,4 @@
-package traits
+package functional
 
 type DecayResult struct {
 	First interface{}
