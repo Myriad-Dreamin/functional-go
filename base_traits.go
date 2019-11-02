@@ -2,6 +2,11 @@ package functional
 
 import "reflect"
 
+type BaseTraitsInterface interface {
+	ObjectFactory() interface{}
+	SliceFactory() interface{}
+}
+
 type BaseTraits struct {
 	TypeInfo reflect.Type
 	SliceInfo reflect.Type
