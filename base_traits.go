@@ -7,7 +7,7 @@ type BaseTraitsInterface interface {
 	GetSliceInfo() reflect.Type
 	ObjectFactory() interface{}
 	SliceFactory() interface{}
-	SliceLCFactory() interface{}
+	SliceLCFactory(len, cap int) interface{}
 }
 
 type BaseTraits struct {
