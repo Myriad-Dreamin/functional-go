@@ -28,7 +28,7 @@ type MapperTraits struct {
 	functional.BaseTraitsInterface
 }
 
-func NewMapperTraits(handler interface{}, options... interface{}) MapperTraits {
+func NewMapperTraits(handler interface{}, options ...interface{}) MapperTraits {
 	t := MapperTraits{
 		BaseTraitsInterface: functional.NewBaseTraits(handler),
 	}
@@ -41,14 +41,12 @@ func NewMapperTraits(handler interface{}, options... interface{}) MapperTraits {
 	return t
 }
 
-
 func (m MapperTraits) F(sliceI interface{}) Handler {
 	slice := reflect.ValueOf(sliceI)
 	handler := reflect.MakeSlice(m.GetTypeInfo(), slice.Len(), slice.Cap())
 	reflect.Copy(handler, slice)
 	return handler.Interface().(Handler)
 }
-
 
 func (m MapperTraits) FInplace(slice interface{}) Handler {
 	return reflect.ValueOf(slice).Convert(m.GetTypeInfo()).Interface().(Handler)
@@ -75,4 +73,3 @@ func (m MapperTraits) MapRInplace(fi interface{}) functional.Function {
 func (m MapperTraits) MapInplace(fi, fm interface{}) {
 	functional.MakeFunc(m.MapRInplace(fi), fm)
 }
-

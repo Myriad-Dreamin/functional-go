@@ -8,8 +8,8 @@ import (
 func TestReduce(t *testing.T) {
 
 	var x func(i ...int) []int
-	Reduce(func(i int) bool {return i>2}, &x)
-	var i = []int{4,7,1,2,9,1,10,7}
+	Reduce(func(i int) bool { return i > 2 }, &x)
+	var i = []int{4, 7, 1, 2, 9, 1, 10, 7}
 	i = x(i...)
 	fmt.Print(i)
 	//type args struct {
