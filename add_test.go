@@ -25,3 +25,11 @@ func TestAdd(t *testing.T) {
 	//	})
 	//}
 }
+
+func BenchmarkAdd(b *testing.B) {
+	var f func(a, b int) int
+	Add(&f)
+	for i := 0; i < b.N; i++ {
+		_ = f(1,1)
+	}
+}

@@ -63,3 +63,8 @@ func Uint() reflect.Value {
 func MakeValue(p reflect.Type) reflect.Value {
 	return reflect.New(p).Elem()
 }
+
+func MakeFunc(f Function, fm interface{}) {
+	var fmi = reflect.ValueOf(fm).Elem()
+	fmi.Set(reflect.MakeFunc(fmi.Type(), f))
+}

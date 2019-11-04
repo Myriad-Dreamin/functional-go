@@ -4,8 +4,6 @@ import (
 	"reflect"
 )
 
-type Function func(in []reflect.Value) (out []reflect.Value)
-
 func BindR(f interface{}, args ...interface{}) Function {
 	var fi = reflect.ValueOf(f)
 	argsv := Wrap(args...)

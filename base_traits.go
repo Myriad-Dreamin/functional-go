@@ -7,6 +7,7 @@ type BaseTraitsInterface interface {
 	GetSliceInfo() reflect.Type
 	ObjectFactory() interface{}
 	SliceFactory() interface{}
+	SliceLCFactory() interface{}
 }
 
 type BaseTraits struct {
@@ -20,6 +21,10 @@ func (traits BaseTraits) ObjectFactory() interface{} {
 
 func (traits BaseTraits) SliceFactory() interface{} {
 	return reflect.MakeSlice(traits.SliceInfo, 0, 0).Interface()
+}
+
+func (traits BaseTraits) SliceLCFactory(len, cap int) interface{} {
+	return reflect.MakeSlice(traits.SliceInfo, len, cap).Interface()
 }
 
 func (traits BaseTraits) GetTypeInfo() reflect.Type {
