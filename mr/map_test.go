@@ -126,7 +126,15 @@ func BenchmarkMapperInplaceTraits8(b *testing.B) {
 func BenchmarkMapRaw4(b *testing.B) {
 	var s = make([]int, factor)
 	for i := 0; i < b.N; i++ {
-		s = MapSlice(IntHandler(s), 0, 10000, 4, func(a int) int {return a+1}).(IntHandler)
+		s = MapSlice(IntHandler(s), 0, factor, 4, func(a int) int {return a+1}).(IntHandler)
+	}
+	//fmt.Println("|", s[0], "|")
+}
+
+func BenchmarkMapRaw8(b *testing.B) {
+	var s = make([]int, factor)
+	for i := 0; i < b.N; i++ {
+		s = MapSlice(IntHandler(s), 0, factor, 8, func(a int) int {return a+1}).(IntHandler)
 	}
 	//fmt.Println("|", s[0], "|")
 }
