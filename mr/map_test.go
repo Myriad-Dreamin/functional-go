@@ -6,6 +6,7 @@ import (
 )
 
 const factor = 100000000
+func add1(i int) int {return i+1}
 
 func TestMap(t *testing.T) {
 	var x, y, z func(i ...int) []int
@@ -13,7 +14,6 @@ func TestMap(t *testing.T) {
 	var i = []int{1,2}
 	i = x(i...)
 	//fmt.Print(i)
-	var add1 = func(i int) int {return i+1}
 	Map(add1, &y)
 	i = y(i...)
 	//fmt.Print(i)
@@ -48,7 +48,7 @@ func TestMap(t *testing.T) {
 func BenchmarkMapRaw(b *testing.B) {
 	var s = make([]int, factor)
 	for i := 0; i < b.N; i++ {
-		s = r(s...)
+		s = mapF(add1, s...)
 	}
 	//fmt.Println("|", s[0], "|")
 }
@@ -56,7 +56,7 @@ func BenchmarkMapRaw(b *testing.B) {
 func BenchmarkMapRawInplace(b *testing.B) {
 	var s = make([]int, factor)
 	for i := 0; i < b.N; i++ {
-		s = rInplace(s...)
+		s = mapFInplace(add1, s...)
 	}
 	//fmt.Println("|", s[0], "|")
 }
@@ -139,17 +139,17 @@ func BenchmarkMapRaw8(b *testing.B) {
 	//fmt.Println("|", s[0], "|")
 }
 
-func r(i ...int) []int {
+func mapF(f IntMapFunc, i ...int) []int {
 	y := make([]int, len(i), cap(i))
 	for j := range i {
-		y[j] = i[j] + 1
+		y[j] = f(i[j])
 	}
 	return y
 }
 
-func rInplace(i ...int) []int {
+func mapFInplace(f IntMapFunc, i ...int) []int {
 	for j := range i {
-		i[j] = i[j] + 1
+		i[j] = f(i[j])
 	}
 	return i
 }

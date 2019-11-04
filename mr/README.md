@@ -21,16 +21,16 @@ goos: windows
 goarch: amd64
 pkg: github.com/Myriad-Dreamin/functional-go/mr
 // 100000000
-BenchmarkMapRaw-12                            10         166700110 ns/op
-BenchmarkMapRawInplace-12                     20          85599920 ns/op
-BenchmarkMapper-12                             2         625999000 ns/op
-BenchmarkMapperTraits-12                       2         630487700 ns/op
-BenchmarkMapperInplaceTraits-12                2         516012900 ns/op
-BenchmarkMapperTraits8-12                      5         282200020 ns/op
-BenchmarkMapperInplaceTraits4-12              10         146800240 ns/op
-BenchmarkMapperInplaceTraits8-12              10         128700010 ns/op
-BenchmarkMapRaw4-12                           10         149499990 ns/op
-BenchmarkMapRaw8-12                           10         134499610 ns/op
+BenchmarkMapRaw-12                  	       3	 371668433 ns/op
+BenchmarkMapRawInplace-12           	       5	 240799760 ns/op
+BenchmarkMapper-12                  	       2	 628998950 ns/op
+BenchmarkMapperTraits-12            	       2	 623999250 ns/op
+BenchmarkMapperInplaceTraits-12     	       2	 513511500 ns/op
+BenchmarkMapperTraits8-12           	       5	 281000660 ns/op
+BenchmarkMapperInplaceTraits4-12    	      10	 158599680 ns/op
+BenchmarkMapperInplaceTraits8-12    	      10	 126300010 ns/op
+BenchmarkMapRaw4-12                 	      10	 147497270 ns/op
+BenchmarkMapRaw8-12                 	      10	 126496710 ns/op
 
 // 100000
 BenchmarkMap-12                               50          24939844 ns/op
