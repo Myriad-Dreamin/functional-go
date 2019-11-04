@@ -72,17 +72,17 @@ func min(l, r int) int {
 }
 
 func MapSlice(handler Handler, l, r, coreCount int, f interface{}) Handler {
-	step := (r-l+1+coreCount-1)/coreCount
-	if coreCount <= 1 || step == 0 {
+	step := (r-l+coreCount-1)/coreCount
+	if coreCount <= 1 || step <= 0 {
 		mapSlice(handler, l, r, f)
 	} else {
 		var wg sync.WaitGroup
 		wg.Add(coreCount)
 		for i := l; i < r; i += step {
-			go func() {
+			go func(i int) {
 				mapSlice(handler, i, min(i + step, r), f)
 				wg.Done()
-			}()
+			}(i)
 		}
 		wg.Wait()
 	}
